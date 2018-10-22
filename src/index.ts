@@ -20,7 +20,7 @@ import { messages as msg } from "./util/messages";
 import { EventEmitter } from "events";
 
 import { state } from "./state/state";
-import { startMain, startRebalancer } from "./abci/handlers";
+import { startMain } from "./abci/handlers";
 import { startAPIserver } from "./net/server";
 
 import { WS_PORT, TM_HOME, ABCI_HOST, ABCI_RPC_PORT, API_PORT } from "./config";
@@ -76,8 +76,8 @@ let node: any; // Tendermint node instance
         Logger.consensus("Tendermint initialized and syncronized.");
 
         // start state rebalancer sub-process AFTER sync
-        await startRebalancer();
-        Logger.rebalancer("Stake rebalancer activated. Subscribed to Ethereum events.", 0);
+        // await startRebalancer();
+        // Logger.rebalancer("Stake rebalancer activated. Subscribed to Ethereum events.", 0);
     } catch (error) {
         Logger.logError(msg.abci.errors.fatal);
         process.exit();
